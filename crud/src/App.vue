@@ -5,7 +5,6 @@ import CadastroUsuario from './components/CadastroUsuario.vue';
 </script>
 
 <template>  
-  <CadastroUsuario/>
   <TabelaUsuarios/>
 </template>
 

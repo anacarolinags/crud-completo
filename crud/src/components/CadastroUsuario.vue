@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <!-- Modal -->
+    
     <div v-bind:class="modalClass" class="modal-container">
       <div class="user-modal">
         <h3>{{ user.id ? 'Editar Usuário' : 'Cadastro de Usuário' }}</h3>
@@ -71,7 +71,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 
-// Definindo a interface User (necessário no TypeScript)
+
 interface User {
   id?: number;
   nome: string;
@@ -106,7 +106,7 @@ export default defineComponent({
   },
   data() {
     return {
-      user: this.user // usando a prop user
+      user: this.user 
     };
   },
   computed: {
@@ -116,7 +116,7 @@ export default defineComponent({
   },
   methods: {
     consultarCep() {
-      const cep = this.user.cep.replace(/\D/g, ''); // Remover caracteres não numéricos
+      const cep = this.user.cep.replace(/\D/g, ''); 
       if (cep.length === 8) {
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
           .then((response) => response.json())
@@ -147,8 +147,8 @@ export default defineComponent({
     .then((response) => {
       if (response.ok) {
         alert(`${this.user.id ? 'Usuário editado' : 'Usuário criado'} com sucesso!`);
-        this.$emit('user-saved'); // Emite evento para o componente pai
-        this.$emit('close'); // Fecha o modal
+        this.$emit('user-saved'); 
+        this.$emit('close'); 
       } else {
         alert('Erro ao salvar o usuário');
       }

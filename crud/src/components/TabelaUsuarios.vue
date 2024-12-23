@@ -4,18 +4,18 @@
       <h1 class="mb-0">CRUD de Usuários</h1>
     </header>
 
-    <!-- Contêiner para a barra de pesquisa e o botão -->
+    
     <div class="search-bar-container">
-      <!-- Barra de pesquisa -->
+     
       <div class="search-bar">
         <input v-model="searchQuery" placeholder="Pesquisar usuários..." />
       </div>
 
-      <!-- Botão para adicionar usuário -->
+      
       <button class="btn-add" @click="openModal">Adicionar Usuário</button>
     </div>
 
-    <!-- Tabela de usuários -->
+    
     <table class="tabela">
       <thead>
         <tr>
@@ -40,7 +40,7 @@
       </tbody>
     </table>
 
-    <!-- Modal de Cadastro de Usuário -->
+    
     <CadastroUsuario 
       v-if="isModalOpen" 
       @close="closeModal" 
@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
-import CadastroUsuario from './CadastroUsuario.vue'; // Importando o componente CadastroUsuario
+import CadastroUsuario from './CadastroUsuario.vue'; 
 
 interface User {
   id: number;
@@ -65,14 +65,14 @@ interface User {
 
 export default defineComponent({
   components: {
-    CadastroUsuario, // Registrando o componente
+    CadastroUsuario, 
   },
   data() {
     return {
-      users: [] as User[], // Lista de usuários
-      searchQuery: '', // Filtro de pesquisa
-      isModalOpen: false, // Controle de abertura do modal
-      selectedUser: {} as User, // Usuário selecionado para edição
+      users: [] as User[], 
+      searchQuery: '', 
+      isModalOpen: false, 
+      selectedUser: {} as User, 
     };
   },
   computed: {
@@ -83,7 +83,7 @@ export default defineComponent({
     },
   },
   methods: {
-    // Carregar usuários da API
+  
     async fetchUsers() {
       try {
         const response = await fetch('http://localhost:3333/users');
@@ -98,25 +98,25 @@ export default defineComponent({
       }
     },
 
-    // Abrir o modal para adicionar um novo usuário
+   
     openModal() {
-      this.selectedUser = {} as User; // Limpar qualquer seleção anterior
-      this.isModalOpen = true;  // Abrir o modal
+      this.selectedUser = {} as User; 
+      this.isModalOpen = true;  
     },
 
-    // Editar usuário e abrir o modal com dados preenchidos
+   
     editUser(user: User) {
-      this.selectedUser = { ...user };  // Passar os dados do usuário selecionado
-      this.isModalOpen = true;  // Abrir o modal
+      this.selectedUser = { ...user }; 
+      this.isModalOpen = true;  
     },
 
-    // Fechar o modal de cadastro
+  
     closeModal() {
       this.isModalOpen = false;
-      this.selectedUser = {} as User; // Limpar o usuário após fechar
+      this.selectedUser = {} as User; 
     },
 
-    // Excluir usuário
+    
     async deleteUser(id: number) {
       if (confirm('Tem certeza que deseja excluir este usuário?')) {
         try {
@@ -142,15 +142,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Estilos para o botão Adicionar Usuário */
-/* Estilos para o contêiner */
+
 .container {
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
 
-/* Estilos para o cabeçalho */
 header {
   display: flex;
   justify-content: space-between;
@@ -163,26 +161,26 @@ h1 {
   margin: 0;
 }
 
-/* Contêiner para a barra de pesquisa e o botão */
+
 .search-bar-container {
   display: flex;
-  justify-content: space-between; /* Coloca os itens na extremidade direita e esquerda */
+  justify-content: space-between; 
   align-items: center;
-  width: 100%; /* Faz com que o contêiner ocupe toda a largura disponível */
-  margin-bottom: 20px; /* Adiciona espaçamento entre os itens */
+  width: 100%; 
+  margin-bottom: 20px; 
 }
 
-/* Estilos para a barra de pesquisa */
+
 .search-bar input {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  max-width: 300px; /* Define a largura máxima da barra de pesquisa */
+  max-width: 300px;  
   width: 100%;
 }
 
-/* Estilos para o botão Adicionar Usuário */
+
 .btn-add {
   background-color: #007bff;
   color: white;
@@ -191,17 +189,13 @@ h1 {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  width: auto; /* O botão não precisa de largura 100% */
+  width: auto; 
 }
 
 .btn-add:hover {
   background-color: #0056b3;
 }
 
-
-
-
-/* Estilos da tabela */
 .tabela {
   width: 100%;
   border-collapse: collapse;
